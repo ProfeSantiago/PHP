@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+<!--					
+	function Ajax_JQuery() {
+		try {
+			$.ajax({
+				url: 'http://localhost:8181/PruebasPHP/4) PHPJSON-Server.php'
+			})
+			.done(function (data) {
+				ImprTablaJson(data);
+			});
+		} catch (err) {
+			alert(err);
+		}// fin catch
+	}//fin Ajax_Completo ==============================
+		
+	function ImprTablaJson(TextoJSON) {
+		var ObjetoJSON = JSON.parse(TextoJSON);
+		
+		document.write("<h2>Leer JSON del Lado del Server con PHP</h2>");
+		document.write("<h3>Llamado con Ajax de JQuery</h3>");
+		document.write("Nombre: ");			
+		document.write(ObjetoJSON.Nombre);
+	}//Fin ImprTablaJson ================================================
+			
+	Ajax_JQuery();
+</script>	
+</body>
+</html>
+

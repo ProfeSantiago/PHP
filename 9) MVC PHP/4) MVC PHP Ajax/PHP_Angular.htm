@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script type="text/javascript" src="angular.min.js"></script>
+</head>
+<body>
+
+<div ng-app="elModulo" ng-controller="elController"> 
+	<h2>Consumir JSON desde un Controller PHP</h2>
+	<h3>Llamado con el servicio $http de AngularJS</h3>
+	
+	<table border=1>
+		<tr><th>Nombre</th></tr>
+		<tr>
+			<td>{{Nombre}}</td>
+		</tr>
+	</table>
+</div>
+
+<script>
+	var app = angular.module('elModulo', []);
+	
+	app.controller('elController', function($scope, $http) {
+		$http.get("http://localhost:8181/PruebasPHP/controllers/elcontrolador.php")
+		.then(function(response) {
+			var elTextoJson = JSON.stringify(response.data);
+			var elObjetoJson = JSON.parse(elTextoJson);			
+			$scope.Nombre = elObjetoJson.Nombre;
+		});
+	});
+</script>	
+</body>
+</html>
+
