@@ -20,13 +20,30 @@
 		function ConsultaSQL($elQuery){			
 			$conexion = $this->Conecta();			
 			$queryDevuelto = $conexion->query($elQuery);
-			return $queryDevuelto;			  
+			return $queryDevuelto;
+			$conexion->close();			  
 		}//End ConsultaSQL  -----------------------------------------------------------
+
+		function GuardaSQL($elQuery){	
+			if ($conexion->query($elQuery) === TRUE) {
+				echo "Registro insertado satisfactoriamente";
+			} else {
+				echo "Ocurrio un error: " . "<br>" . $conexion->error;
+			}
+			$conexion->close();	
+		}//End InsertaSQL  -----------------------------------------------------------
 		
 		function imprimeResultados($miQuery){
 			 if ($miQuery->num_rows > 0) {
 				while($row = $miQuery->fetch_assoc()) {
-					echo "Cedula: " . $row["Cedula"]. " - Nombre: " . $row["Nombre"]. " - Telefono: " . $row["Telefono"]. "<br>";
+					echo      "#: " . $row["Id_Cliente"] 
+							. " - Nombre: " . $row["Nombre_Cliente"] 
+							. " - Fecha de Registro: " . $row["Fecha_Registro"]
+							. " - Telefono Fijo: " . $row["Tel1_Cliente"]
+							. " - Telefono Celular: " . $row["Tel2_Cliente"]
+							. " - Cantón: " . $row["Canton_Cliente"]
+							. " - Dirección: " . $row["Dir_Cliente"]
+							. "<br>";
 				}
 			} else {
 				echo "0 Filas";
